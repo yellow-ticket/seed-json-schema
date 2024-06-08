@@ -1,6 +1,7 @@
 import { JSONSchema7 } from 'json-schema'
 import { datatype, internet, finance } from 'faker'
 import { randexp } from 'randexp'
+import { toBinary } from './utils/to-binary.js'
 
 export function seedString(schema: JSONSchema7): string {
   if (schema.pattern) {

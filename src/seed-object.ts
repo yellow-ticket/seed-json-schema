@@ -1,13 +1,18 @@
 import { JSONSchema7 } from 'json-schema'
 import { invariant } from 'outvariant'
 import { datatype, random } from 'faker'
-import { repeat } from './repeat.js'
+import { repeat } from './utils/repeat.js'
 import { seedSchema } from './seed-schema.js'
 
 export function seedObject(schema: JSONSchema7) {
+  // Always use the explicit "default" value.
+  if (schema.default) {
+    return schema.default
+  }
+
   // Always us an explicit example, if provided.
-  if (schema.example) {
-    return schema.example
+  if (schema.examples) {
+    return schema.examples
   }
 
   const json: Record<string, unknown> = {}
@@ -15,6 +20,10 @@ export function seedObject(schema: JSONSchema7) {
   // Support explicit "properties".
   if (schema.properties) {
     for (const [key, propertyDefinition] of Object.entries(schema.properties)) {
+      if (typeof propertyDefinition === 'boolean') {
+        continue
+      }
+
       invariant(
         !('$ref' in propertyDefinition),
         'Failed to generate mock from the schema property definition (%j): found unresolved reference.',
