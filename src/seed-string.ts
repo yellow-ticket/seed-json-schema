@@ -1,82 +1,19 @@
 import { JSONSchema7 } from 'json-schema'
-import { datatype, internet, finance } from 'faker'
+import { faker } from '@faker-js/faker'
 import { randexp } from 'randexp'
-import { toBinary } from './utils/to-binary.js'
 
 export function seedString(schema: JSONSchema7): string {
-  if (schema.pattern) {
-    return randexp(schema.pattern)
+  if (schema.const) {
+    return schema.const as string
   }
 
-  switch (schema.format?.toLowerCase()) {
-    case 'byte': {
-      return btoa(datatype.string())
-    }
-
-    case 'binary': {
-      return toBinary([
-        datatype.number({ min: 0, max: 255 }),
-        datatype.number({ min: 0, max: 255 }),
-        datatype.number({ min: 0, max: 255 }),
-        datatype.number({ min: 0, max: 255 }),
-      ])
-    }
-
-    case 'uuid': {
-      return datatype.uuid()
-    }
-
-    case 'email': {
-      return internet.email()
-    }
-
-    case 'password': {
-      return internet.password()
-    }
-
-    case 'date': {
-      return datatype
-        .datetime(schema.maximum)
-        .toISOString()
-        .replace(/T.+$/g, '')
-    }
-
-    case 'date-time': {
-      return datatype.datetime(schema.maximum).toISOString()
-    }
-
-    case 'uri': {
-      return internet.url()
-    }
-
-    case 'hostname': {
-      return internet.domainName()
-    }
-
-    case 'ipv4': {
-      return internet.ip()
-    }
-
-    case 'ipv6': {
-      return internet.ipv6()
-    }
-
-    case 'creditcard': {
-      return finance.creditCardNumber()
-    }
-
-    case 'hexcolor': {
-      return internet.color()
-    }
-
-    case 'mac': {
-      return internet.mac()
-    }
+  if (schema.examples) {
+    return schema.examples as string
   }
 
   // Use a random value from the specified enums list.
   if (schema.enum) {
-    const enumIndex = datatype.number({
+    const enumIndex = faker.number.int({
       min: 0,
       max: schema.enum.length - 1,
     })
@@ -84,6 +21,99 @@ export function seedString(schema: JSONSchema7): string {
     return schema.enum[enumIndex] as string
   }
 
-  const value = datatype.string(schema.minLength)
-  return value.slice(0, schema.maxLength)
+  if (schema.pattern) {
+    return randexp(schema.pattern)
+  }
+
+  const min = schema.minLength ?? 5
+  const max = schema.maxLength ?? min
+
+  switch (schema.format?.toLowerCase()) {
+    case 'byte': {
+      return btoa(
+        faker.string.sample({
+          min,
+          max,
+        })
+      )
+    }
+
+    case 'binary': {
+      return faker.string.binary({
+        length: {
+          min,
+          max,
+        },
+      })
+    }
+
+    case 'uuid': {
+      return faker.string.uuid()
+    }
+
+    case 'email': {
+      return faker.internet.email()
+    }
+
+    case 'password': {
+      return faker.internet.password()
+    }
+
+    case 'date': {
+      const min = schema.minimum || Date.now()
+      return faker.date
+        .between({
+          from: min,
+          to: schema.maximum || faker.date.future({ refDate: min }),
+        })
+        .toISOString()
+        .replace(/T.+$/g, '')
+    }
+
+    case 'date-time': {
+      const min = schema.minimum || Date.now()
+      return faker.date
+        .between({
+          from: schema.minimum || Date.now(),
+          to: schema.maximum || faker.date.future({ refDate: min }),
+        })
+        .toISOString()
+    }
+
+    case 'uri': {
+      return faker.internet.url()
+    }
+
+    case 'hostname': {
+      return faker.internet.domainName()
+    }
+
+    case 'ipv4': {
+      return faker.internet.ip()
+    }
+
+    case 'ipv6': {
+      return faker.internet.ipv6()
+    }
+
+    case 'creditcard': {
+      return faker.finance.creditCardNumber()
+    }
+
+    case 'hexcolor': {
+      return faker.internet.color()
+    }
+
+    case 'mac': {
+      return faker.internet.mac()
+    }
+  }
+
+  return faker.word.sample({
+    length: {
+      min,
+      max,
+    },
+    strategy: 'longest',
+  })
 }

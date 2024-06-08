@@ -1,6 +1,6 @@
 import { JSONSchema7Definition } from 'json-schema'
 import { invariant } from 'outvariant'
-import { datatype } from 'faker'
+import { faker } from '@faker-js/faker'
 import { seedSchema } from './seed-schema.js'
 
 export function seedArray(schema: JSONSchema7Definition): Array<unknown> {
@@ -25,7 +25,7 @@ export function seedArray(schema: JSONSchema7Definition): Array<unknown> {
   )
 
   const minLength = schema.minLength || 2
-  const arrayLength = datatype.number({
+  const arrayLength = faker.number.int({
     min: minLength,
     max: schema.maxLength || minLength + 4,
   })

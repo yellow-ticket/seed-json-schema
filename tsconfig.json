@@ -1,12 +1,6 @@
 {
-  "include": ["src"],
-  "exclude": ["node_modules"],
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "outDir": "./build",
-    "declaration": true,
-    "declarationDir": "./build"
-  }
+  "references": [
+    { "path": "./tsconfig.build.json" },
+    { "path": "./tsconfig.test.json" }
+  ]
 }

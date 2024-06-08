@@ -1,8 +1,8 @@
 import { JSONSchema7 } from 'json-schema'
-import { datatype } from 'faker'
+import { faker } from '@faker-js/faker'
 
 export function seedNumber(schema: JSONSchema7): number {
-  return datatype.number({
+  return faker.number.int({
     min: schema.minimum,
     max: schema.maximum,
   })

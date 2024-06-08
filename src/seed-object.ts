@@ -1,6 +1,6 @@
 import { JSONSchema7 } from 'json-schema'
 import { invariant } from 'outvariant'
-import { datatype, random } from 'faker'
+import { faker } from '@faker-js/faker'
 import { repeat } from './utils/repeat.js'
 import { seedSchema } from './seed-schema.js'
 
@@ -43,8 +43,8 @@ export function seedObject(schema: JSONSchema7) {
 
     if (additionalPropertiesSchema === true) {
       repeat(0, 4, () => {
-        const propertyName = random.word().toLowerCase()
-        json[propertyName] = datatype.string()
+        const propertyName = faker.word.sample().toLowerCase()
+        json[propertyName] = faker.string.sample()
       })
 
       return json
@@ -56,7 +56,7 @@ export function seedObject(schema: JSONSchema7) {
     )
 
     repeat(0, 4, () => {
-      const propertyName = random.word().toLowerCase()
+      const propertyName = faker.word.sample().toLowerCase()
       json[propertyName] = seedSchema(additionalPropertiesSchema)
     })
   }
