@@ -19,9 +19,9 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@types/faker": "^6.6.9",
+    "@types/faker": "^5.5.9",
     "@types/json-schema": "^7.0.15",
-    "faker": "^6.6.6",
+    "faker": "^5.5.3",
     "outvariant": "^1.4.2",
     "randexp": "^0.5.3"
   }

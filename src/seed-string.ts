@@ -81,7 +81,7 @@ export function seedString(schema: JSONSchema7): string {
       max: schema.enum.length - 1,
     })
 
-    return schema.enum[enumIndex]
+    return schema.enum[enumIndex] as string
   }
 
   const value = datatype.string(schema.minLength)
