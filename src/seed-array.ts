@@ -10,6 +10,10 @@ export function seedArray(schema: JSONSchema7Definition): Array<unknown> {
 
   const { items: arraySchema } = schema
 
+  if (arraySchema == null) {
+    return []
+  }
+
   if (Array.isArray(arraySchema)) {
     return arraySchema.map(seedArray)
   }
