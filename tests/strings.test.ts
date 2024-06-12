@@ -58,7 +58,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   ],
 
   // Date.
-  ['returns a random "date"', { type: 'string', format: 'date' }, '2024-11-07'],
+  ['returns a random "date"', { type: 'string', format: 'date' }, '2024-11-11'],
   [
     'returns a random "date" with "minimum" set',
     {
@@ -83,7 +83,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "date-time"',
     { type: 'string', format: 'date-time' },
-    /^2024-11-07T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+    /^2024-11-11T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
   ],
   [
     'returns a random "date-time" with "minimum" set',
