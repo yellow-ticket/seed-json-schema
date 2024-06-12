@@ -20,6 +20,26 @@ it.each<[string, JSONSchema7, unknown[]]>([
     },
     [],
   ],
+  [
+    'returns a random array with "minItems" set',
+    { type: 'array', minItems: 5, items: { type: 'string' } },
+    ['wetly', 'fooey', 'fully', 'abaft', 'lined', 'waste', 'sword'],
+  ],
+  [
+    'returns a random array with "maxItems" set',
+    { type: 'array', maxItems: 3, items: { type: 'number' } },
+    [100, 72],
+  ],
+  [
+    'returns a random array with "minItems" and "maxItems" set',
+    {
+      type: 'array',
+      minItems: 3,
+      maxItems: 3,
+      items: { type: 'number' },
+    },
+    [42, 100, 72],
+  ],
 
   // Item type.
   [

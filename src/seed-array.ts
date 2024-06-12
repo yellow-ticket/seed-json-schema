@@ -28,10 +28,10 @@ export function seedArray(schema: JSONSchema7Definition): Array<unknown> {
     arraySchema
   )
 
-  const minLength = schema.minLength || 2
+  const minItems = schema.minItems ?? 2
   const arrayLength = faker.number.int({
-    min: minLength,
-    max: schema.maxLength || minLength + 4,
+    min: minItems,
+    max: schema.maxItems ?? minItems + 4,
   })
 
   const value: Array<unknown> = new Array(arrayLength)
