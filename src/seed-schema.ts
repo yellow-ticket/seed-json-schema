@@ -21,7 +21,7 @@ export function seedSchema(schema: JSONSchema7) {
     }
 
     case 'boolean': {
-      return seedBoolean()
+      return seedBoolean(schema)
     }
 
     case 'array': {
