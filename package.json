@@ -7,15 +7,23 @@
   "types": "./build/index.d.ts",
   "scripts": {
     "test": "vitest",
-    "build": "tsc -p ./tsconfig.build.json"
+    "build": "tsc -p ./tsconfig.build.json",
+    "release": "release publish"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "json-schema",
+    "generate",
+    "values",
+    "seed",
+    "random"
+  ],
+  "author": "Artem Zakharchenko <me@kettanaito.com>",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "@ossjs/release": "^0.8.1",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
   },
