@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@yellow-ticket/seed-json-schema",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Seed a JSON Schema with random values.",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
