@@ -47,6 +47,16 @@ it.each<[string, JSONSchema7, string | RegExp]>([
     '6fbe024f-2316-4265-aa6e-8d65a837e308',
   ],
   [
+    'returns a random "firstName"',
+    { type: 'string', format: 'firstName' },
+    'Hayley',
+  ],
+  [
+    'returns a random "lastName"',
+    { type: 'string', format: 'lastName' },
+    'Zieme',
+  ],
+  [
     'returns a random "email"',
     { type: 'string', format: 'email' },
     'Zion.Watsica30@yahoo.com',

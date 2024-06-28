@@ -53,6 +53,14 @@ export function seedString(schema: JSONSchema7): string {
       return faker.string.uuid()
     }
 
+    case 'firstname': {
+      return faker.person.firstName()
+    }
+
+    case 'lastname': {
+      return faker.person.lastName()
+    }
+
     case 'email': {
       return faker.internet.email()
     }
