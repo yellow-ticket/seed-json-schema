@@ -1,6 +1,8 @@
 import { JSONSchema7 } from 'json-schema'
 import { faker } from '@faker-js/faker'
-import { randexp } from 'randexp'
+import randexpDefaultExport from 'randexp'
+
+const { randexp } = randexpDefaultExport
 
 export function seedString(schema: JSONSchema7): string {
   if (schema.const) {
