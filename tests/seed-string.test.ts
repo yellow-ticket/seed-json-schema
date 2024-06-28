@@ -137,10 +137,10 @@ it.each<[string, JSONSchema7, string | RegExp]>([
 
   // Misc.
   [
-    'returns a random "creditcard"',
+    'returns a random "creditCard"',
     {
       type: 'string',
-      format: 'creditcard',
+      format: 'creditCard',
     },
     '6489-6201-3912-0313-3636',
   ],
