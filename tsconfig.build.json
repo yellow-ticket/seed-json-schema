@@ -1,6 +1,6 @@
 {
-  "include": ["src"],
-  "exclude": ["node_modules", "tests"],
+  "include": ["./src"],
+  "exclude": ["node_modules", "./tests"],
   "compilerOptions": {
     "composite": true,
     "strict": true,
@@ -10,7 +10,6 @@
     "moduleResolution": "nodenext",
     "rootDir": "./src",
     "outDir": "./build",
-    "declaration": true,
-    "declarationDir": "./build"
+    "declaration": true
   }
 }
