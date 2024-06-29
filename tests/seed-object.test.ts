@@ -26,8 +26,8 @@ it.each<[string, JSONSchema7, object]>([
     },
     {
       string: 'fully',
-      number: 100,
-      integer: 14.67,
+      integer: 14,
+      number: 99.91,
       boolean: true,
     },
   ],

@@ -28,7 +28,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
   [
     'returns a random array with "maxItems" set',
     { type: 'array', maxItems: 3, items: { type: 'number' } },
-    [100, 72],
+    [99.72, 72.03],
   ],
   [
     'returns a random array with "minItems" and "maxItems" set',
@@ -38,7 +38,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
       maxItems: 3,
       items: { type: 'number' },
     },
-    [42, 100, 72],
+    [41.7, 99.72, 72.03],
   ],
 
   // Item type.
@@ -60,7 +60,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         type: 'number',
       },
     },
-    [100, 72, 94],
+    [99.72, 72.03, 93.26, 0.01],
   ],
   [
     'returns a random array with the "integer" item type',
@@ -70,7 +70,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         type: 'integer',
       },
     },
-    [99.72, 72.03, 93.26, 0.01],
+    [100, 72, 94],
   ],
   [
     'returns a random array with the "boolean" item type',
@@ -109,7 +109,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
       items: {
         type: 'array',
         items: {
-          type: 'number',
+          type: 'integer',
         },
       },
     },
