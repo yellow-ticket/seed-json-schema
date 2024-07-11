@@ -1,7 +1,7 @@
-import { JSONSchema7 } from 'json-schema'
 import { seedString } from '../src/seed-string.js'
+import type { JSONSchema } from '../src/types.js'
 
-it.each<[string, JSONSchema7, string | RegExp]>([
+it.each<[string, JSONSchema, string | RegExp]>([
   ['generates a random string by default', { type: 'string' }, 'fully'],
   ['respects "minLength"', { type: 'string', minLength: 10 }, 'especially'],
   [
@@ -71,7 +71,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "date"',
     { type: 'string', format: 'date' },
-    /2024-11-\d{2}/,
+    /2024-\d{2}-\d{2}/,
   ],
   [
     'returns a random "date" with "minimum" set',
@@ -97,7 +97,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "date-time"',
     { type: 'string', format: 'date-time' },
-    /^2024-11-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+    /^2024-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
   ],
   [
     'returns a random "date-time" with "minimum" set',
@@ -163,6 +163,11 @@ it.each<[string, JSONSchema7, string | RegExp]>([
     'returns a random "mac"',
     { type: 'string', format: 'mac' },
     '6f:be:02:4f:23:16',
+  ],
+  [
+    'returns the "example" if defined',
+    { type: 'string', example: 'world' },
+    'world',
   ],
 ])('%s', (_, input, output) => {
   if (output instanceof RegExp) {

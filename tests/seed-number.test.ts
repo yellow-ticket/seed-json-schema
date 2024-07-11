@@ -1,7 +1,7 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema } from '../src/types.js'
 import { seedNumber } from '../src/seed-number.js'
 
-it.each<[string, JSONSchema7, number | RegExp]>([
+it.each<[string, JSONSchema, number | RegExp]>([
   ['returns random number by default', { type: 'number' }, 41.7],
   [
     'returns a random number with "minimum" set',
@@ -41,6 +41,22 @@ it.each<[string, JSONSchema7, number | RegExp]>([
     {
       type: 'number',
       examples: 12.345,
+    },
+    12.345,
+  ],
+  [
+    'returns the number specified in "example"',
+    {
+      type: 'number',
+      example: 12.345,
+    },
+    12.345,
+  ],
+  [
+    'returns the number specified in "example" if "example" is string',
+    {
+      type: 'number',
+      example: '12.345',
     },
     12.345,
   ],

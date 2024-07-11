@@ -1,3 +1,5 @@
+export type { JSONSchema } from './types.js'
+
 export { seedSchema } from './seed-schema.js'
 export { seedArray } from './seed-array.js'
 export { seedBoolean } from './seed-boolean.js'

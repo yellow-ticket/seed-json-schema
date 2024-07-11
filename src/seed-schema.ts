@@ -1,12 +1,12 @@
-import { JSONSchema7 } from 'json-schema'
 import { seedString } from './seed-string.js'
 import { seedNumber } from './seed-number.js'
 import { seedInteger } from './seed-integer.js'
 import { seedBoolean } from './seed-boolean.js'
 import { seedArray } from './seed-array.js'
 import { seedObject } from './seed-object.js'
+import type { JSONSchema } from './types.js'
 
-export function seedSchema(schema: JSONSchema7) {
+export function seedSchema(schema: JSONSchema) {
   switch (schema.type) {
     case 'string': {
       return seedString(schema)
