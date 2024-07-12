@@ -1,10 +1,10 @@
-import { JSONSchema7 } from 'json-schema'
 import { invariant } from 'outvariant'
 import { faker } from '@faker-js/faker'
 import { repeat } from './utils/repeat.js'
 import { seedSchema } from './seed-schema.js'
+import type { JSONSchema } from './types.js'
 
-export function seedObject(schema: JSONSchema7) {
+export function seedObject(schema: JSONSchema) {
   // Always use the explicit "default" value.
   if (schema.default) {
     return schema.default
@@ -13,6 +13,10 @@ export function seedObject(schema: JSONSchema7) {
   // Always us an explicit example, if provided.
   if (schema.examples) {
     return schema.examples
+  }
+
+  if (schema.example) {
+    return typeof schema.example === 'string' ? JSON.parse(schema.example) : schema.example
   }
 
   const json: Record<string, unknown> = {}

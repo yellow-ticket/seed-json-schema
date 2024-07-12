@@ -1,7 +1,7 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema } from '../src/types.js'
 import { seedInteger } from '../src/seed-integer.js'
 
-it.each<[string, JSONSchema7, number | RegExp]>([
+it.each<[string, JSONSchema, number | RegExp]>([
   ['returns a random integer by default', { type: 'integer' }, 42],
   [
     'returns a random integer with "minimum" set',
@@ -38,6 +38,22 @@ it.each<[string, JSONSchema7, number | RegExp]>([
       examples: 12.345,
     },
     12.345,
+  ],
+  [
+    'returns the integer specified in "example"',
+    {
+      type: 'integer',
+      example: 123,
+    },
+    123,
+  ],
+  [
+    'returns the integer specified in "example" if "example" is string',
+    {
+      type: 'integer',
+      example: '123',
+    },
+    123,
   ],
 ])('%s', (_, input, output) => {
   if (output instanceof RegExp) {

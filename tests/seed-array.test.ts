@@ -1,7 +1,7 @@
-import { JSONSchema7 } from 'json-schema'
 import { seedArray } from '../src/seed-array.js'
+import type { JSONSchema } from '../src/types.js'
 
-it.each<[string, JSONSchema7, unknown[]]>([
+it.each<[string, JSONSchema, unknown[]]>([
   ['returns an empty array by default', { type: 'array' }, []],
   ['returns an empty array if schema is boolean', true as any, []],
   [
@@ -119,6 +119,41 @@ it.each<[string, JSONSchema7, unknown[]]>([
       [18, 39, 34],
       [40, 94, 54, 85, 42],
     ],
+  ],
+  [
+    'returns an array-level example',
+    {
+      type: 'array',
+      items: {
+        type: 'integer',
+        format: 'int64',
+      },
+      example: [1, 2, 3]
+    },
+    [1, 2, 3],
+  ],
+  [
+    'returns an array-level example if "example" is string',
+    {
+      type: 'array',
+      items: {
+        type: 'integer',
+        format: 'int64',
+      },
+      example: '[1, 2, 3]'
+    },
+    [1, 2, 3],
+  ],
+  [
+    'returns an array example if "example" provided in individual array item level',
+    {
+      type: 'array',
+      items: {
+        type: 'integer',
+        example: 1
+      },
+    },
+    [1],
   ],
 ])('%s', (_, input, output) => {
   expect(seedArray(input)).toEqual(output)

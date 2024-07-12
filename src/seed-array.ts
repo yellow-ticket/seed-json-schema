@@ -1,11 +1,19 @@
-import { JSONSchema7Definition } from 'json-schema'
 import { invariant } from 'outvariant'
 import { faker } from '@faker-js/faker'
 import { seedSchema } from './seed-schema.js'
+import type { JSONSchema } from './types.js'
 
-export function seedArray(schema: JSONSchema7Definition): Array<unknown> {
+export function seedArray(schema: JSONSchema | boolean): Array<unknown> {
   if (typeof schema === 'boolean') {
     return []
+  }
+
+  if (schema.example) {
+
+    if (Array.isArray(schema.example)) {
+      return schema.example
+    }
+    return typeof schema.example === 'string' ? JSON.parse(schema.example) : schema.example
   }
 
   const { items: arraySchema } = schema
@@ -20,6 +28,10 @@ export function seedArray(schema: JSONSchema7Definition): Array<unknown> {
 
   if (typeof arraySchema === 'boolean') {
     return []
+  }
+
+  if (arraySchema.example) {
+    return typeof arraySchema.example === 'string' ? [JSON.parse(arraySchema.example)] : [arraySchema.example]
   }
 
   invariant(

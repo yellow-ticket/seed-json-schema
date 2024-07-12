@@ -1,16 +1,20 @@
-import { JSONSchema7 } from 'json-schema'
 import { faker } from '@faker-js/faker'
+import type { JSONSchema } from './types.js'
 
 /**
  * @see https://json-schema.org/understanding-json-schema/reference/numeric#number
  */
-export function seedNumber(schema: JSONSchema7): number {
+export function seedNumber(schema: JSONSchema): number {
   if (schema.const) {
     return schema.const as number
   }
 
   if (schema.examples) {
     return schema.examples as number
+  }
+
+  if (schema.example) {
+    return typeof schema.example === 'number' ? schema.example : Number(schema.example)
   }
 
   const minimum =

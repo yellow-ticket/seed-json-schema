@@ -1,7 +1,7 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema } from '../src/types.js'
 import { seedObject } from '../src/seed-object.js'
 
-it.each<[string, JSONSchema7, object]>([
+it.each<[string, JSONSchema, object]>([
   ['returns an empty object by default', { type: 'object' }, {}],
   [
     'returns the "default" object if specified',
@@ -46,6 +46,16 @@ it.each<[string, JSONSchema7, object]>([
     {
       friends: ['fully', 'until'],
     },
+  ],
+  [
+    'returns the "example" object if specified',
+    { type: 'object', example: { foo: 'bar' } },
+    { foo: 'bar' },
+  ],
+  [
+    'returns the "example" object if the "example" specified as string',
+    { type: 'object', example: '{ "foo": "bar" }' },
+    { foo: 'bar' },
   ],
 ])('%s', (_, input, output) => {
   expect(seedObject(input)).toEqual(output)

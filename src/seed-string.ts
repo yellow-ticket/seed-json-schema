@@ -1,16 +1,20 @@
-import { JSONSchema7 } from 'json-schema'
 import { faker } from '@faker-js/faker'
 import randexpDefaultExport from 'randexp'
+import type { JSONSchema } from './types.js'
 
 const { randexp } = randexpDefaultExport
 
-export function seedString(schema: JSONSchema7): string {
+export function seedString(schema: JSONSchema): string {
   if (schema.const) {
     return schema.const as string
   }
 
   if (schema.examples) {
     return schema.examples as string
+  }
+
+  if (schema.example) {
+    return schema.example as string
   }
 
   // Use a random value from the specified enums list.
