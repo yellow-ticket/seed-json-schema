@@ -27,9 +27,9 @@
     "./src"
   ],
   "devDependencies": {
-    "@ossjs/release": "^0.8.1",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "@ossjs/release": "^0.10.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
