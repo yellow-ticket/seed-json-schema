@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema7 } from 'json-schema'
 import { seedObject } from '../src/seed-object.js'
 
 it.each<[string, JSONSchema7, object]>([
@@ -46,6 +46,52 @@ it.each<[string, JSONSchema7, object]>([
     {
       friends: ['fully', 'until'],
     },
+  ],
+
+  /* Enums */
+  [
+    'respects a single plain enum value',
+    {
+      type: 'object',
+      properties: {
+        status: { type: 'number', enum: [200] },
+      },
+      required: ['status'],
+    },
+    { status: 200 },
+  ],
+  [
+    'respects a multiple plain enum value',
+    {
+      type: 'object',
+      properties: {
+        status: { type: 'number', enum: [200, 201, 204] },
+      },
+      required: ['status'],
+    },
+    { status: 200 },
+  ],
+  [
+    'respects a schema as an enum value',
+    {
+      type: 'object',
+      properties: {
+        status: { type: 'number', enum: [{ type: 'string' }] },
+      },
+      required: ['status'],
+    },
+    { status: 'fully' },
+  ],
+  [
+    'respects a schema with a nested enum as an enum value',
+    {
+      type: 'object',
+      properties: {
+        status: { type: 'number', enum: [{ type: 'number', enum: [200] }] },
+      },
+      required: ['status'],
+    },
+    { status: 200 },
   ],
 ])('%s', (_, input, output) => {
   expect(seedObject(input)).toEqual(output)

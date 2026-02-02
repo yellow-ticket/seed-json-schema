@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema7 } from 'json-schema'
 import { faker } from '@faker-js/faker'
 import randexpDefaultExport from 'randexp'
 
@@ -36,7 +36,7 @@ export function seedString(schema: JSONSchema7): string {
         faker.string.sample({
           min,
           max,
-        })
+        }),
       )
     }
 

@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema7 } from 'json-schema'
 import { invariant } from 'outvariant'
 import { faker } from '@faker-js/faker'
 import { repeat } from './utils/repeat.js'
@@ -27,7 +27,7 @@ export function seedObject(schema: JSONSchema7) {
       invariant(
         !('$ref' in propertyDefinition),
         'Failed to generate mock from the schema property definition (%j): found unresolved reference.',
-        propertyDefinition
+        propertyDefinition,
       )
 
       const value = seedSchema(propertyDefinition)
@@ -52,7 +52,7 @@ export function seedObject(schema: JSONSchema7) {
 
     invariant(
       !('$ref' in additionalPropertiesSchema),
-      'Failed to generate mock from the "additionalProperties" schema: found unresolved reference.'
+      'Failed to generate mock from the "additionalProperties" schema: found unresolved reference.',
     )
 
     repeat(0, 4, () => {
