@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema7 } from 'json-schema'
 import { faker } from '@faker-js/faker'
 
 /**
@@ -16,11 +16,11 @@ export function seedNumber(schema: JSONSchema7): number {
   const minimum =
     schema.exclusiveMinimum != null
       ? schema.exclusiveMinimum + 1
-      : schema.minimum ?? 0
+      : (schema.minimum ?? 0)
   const maximum =
     schema.exclusiveMaximum != null
       ? schema.exclusiveMaximum - 1
-      : schema.maximum ?? minimum + 100
+      : (schema.maximum ?? minimum + 100)
 
   return faker.number.float({
     min: minimum,

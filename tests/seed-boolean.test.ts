@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema7 } from 'json-schema'
 import { seedBoolean } from '../src/seed-boolean.js'
 
 it.each<[string, JSONSchema7, boolean]>([

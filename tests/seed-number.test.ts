@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema'
+import type { JSONSchema7 } from 'json-schema'
 import { seedNumber } from '../src/seed-number.js'
 
 it.each<[string, JSONSchema7, number | RegExp]>([
