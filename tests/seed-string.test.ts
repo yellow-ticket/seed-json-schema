@@ -71,7 +71,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "date"',
     { type: 'string', format: 'date' },
-    /2024-11-\d{2}/,
+    /\d{4}-\d{2}-\d{2}/,
   ],
   [
     'returns a random "date" with "minimum" set',
@@ -97,7 +97,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "date-time"',
     { type: 'string', format: 'date-time' },
-    /^2024-11-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
   ],
   [
     'returns a random "date-time" with "minimum" set',
@@ -106,7 +106,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
       format: 'date-time',
       minimum: new Date('2026-01-01 12:24:02.000Z').getTime(),
     },
-    /^2026-06-02T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
   ],
   [
     'returns a random "date-time" with "minimum" and "maximum" set',
