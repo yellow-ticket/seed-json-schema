@@ -26,6 +26,9 @@
     "./build",
     "./src"
   ],
+  "repository": {
+    "url": "https://github.com/yellow-ticket/seed-json-schema"
+  },
   "devDependencies": {
     "@ossjs/release": "^0.10.1",
     "typescript": "^5.9.3",
