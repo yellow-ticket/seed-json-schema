@@ -27,8 +27,8 @@
     "./src"
   ],
   "devDependencies": {
-    "@ossjs/release": "^0.8.1",
-    "typescript": "^5.4.5",
+    "@ossjs/release": "^0.10.1",
+    "typescript": "^5.9.3",
     "vitest": "^4.0.18"
   },
   "dependencies": {
