@@ -5,8 +5,27 @@ import { seedInteger } from './seed-integer.js'
 import { seedBoolean } from './seed-boolean.js'
 import { seedArray } from './seed-array.js'
 import { seedObject } from './seed-object.js'
+import { merge } from './utils/merge.js'
 
 export function seedSchema(schema: JSONSchema7) {
+  if (schema.allOf) {
+    return seedSchema(merge(schema.allOf))
+  }
+
+  if (schema.oneOf) {
+    let first = schema.oneOf.at(0)
+    if (typeof first === 'object') {
+      return seedSchema(first)
+    }
+  }
+
+  if (schema.anyOf) {
+    let first = schema.anyOf.at(0)
+    if (typeof first === 'object') {
+      return seedSchema(first)
+    }
+  }
+
   if (schema.enum != null) {
     const enumValue = schema.enum[0]
 
