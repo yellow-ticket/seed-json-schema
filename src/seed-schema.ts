@@ -15,7 +15,7 @@ export function seedSchema(schema: JSONSchema7) {
   }
 
   if (schema.oneOf) {
-    let first = schema.oneOf.at(0)
+    const first = schema.oneOf.at(0)
 
     if (isObject(first)) {
       const { oneOf, ...rest } = schema
