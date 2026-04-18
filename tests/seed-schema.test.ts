@@ -43,6 +43,17 @@ describe("allOf", () => {
       },
       { name: "fully", age: 100, active: true },
     ],
+    [
+      "merges sibling keywords alongside allOf",
+      {
+        type: "object",
+        properties: { name: { type: "string" } },
+        allOf: [
+          { type: "object", properties: { age: { type: "integer" } } },
+        ],
+      },
+      { name: "fully", age: 100 },
+    ],
   ])("%s", (_, input, output) => {
     expect(seedSchema(input)).toEqual(output);
   });
@@ -93,6 +104,18 @@ describe("oneOf", () => {
       },
       { name: "fully" },
     ],
+    [
+      "merges sibling keywords alongside oneOf",
+      {
+        type: "object",
+        properties: { name: { type: "string" } },
+        oneOf: [
+          { type: "object", properties: { age: { type: "integer" } } },
+          { type: "object", properties: { active: { type: "boolean" } } },
+        ],
+      },
+      { name: "fully", age: 100 },
+    ],
   ])("%s", (_, input, output) => {
     expect(seedSchema(input)).toEqual(output);
   });
@@ -142,6 +165,18 @@ describe("anyOf", () => {
         ],
       },
       { name: "fully" },
+    ],
+    [
+      "merges sibling keywords alongside anyOf",
+      {
+        type: "object",
+        properties: { name: { type: "string" } },
+        anyOf: [
+          { type: "object", properties: { age: { type: "integer" } } },
+          { type: "object", properties: { active: { type: "boolean" } } },
+        ],
+      },
+      { name: "fully", age: 100 },
     ],
   ])("%s", (_, input, output) => {
     expect(seedSchema(input)).toEqual(output);

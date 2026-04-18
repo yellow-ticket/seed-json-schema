@@ -1,11 +1,8 @@
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
+import { isObject } from './is-object.js'
 
-function isObj(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value)
-}
-
-function mergeObjs<T>(target: T, source: T): T {
-  if (!isObj(target) || !isObj(source)) {
+function mergeObjects<T>(target: T, source: T): T {
+  if (!isObject(target) || !isObject(source)) {
     return source
   }
 
@@ -18,8 +15,8 @@ function mergeObjs<T>(target: T, source: T): T {
 
     if (Array.isArray(targetVal) && Array.isArray(sourceVal)) {
       result[key] = [...new Set([...targetVal, ...sourceVal])] as T[keyof T]
-    } else if (isObj(targetVal) && isObj(sourceVal)) {
-      result[key] = mergeObjs(targetVal, sourceVal)
+    } else if (isObject(targetVal) && isObject(sourceVal)) {
+      result[key] = mergeObjects(targetVal, sourceVal)
     } else {
       result[key] = sourceVal
     }
@@ -30,15 +27,20 @@ function mergeObjs<T>(target: T, source: T): T {
 
 function flatten(objects: JSONSchema7Definition[]): JSONSchema7Definition[] {
   return objects.flatMap((obj) => {
-    if (typeof obj === 'boolean') return [obj]
-    if (obj.allOf) return flatten(obj.allOf)
+    if (typeof obj === 'boolean') {
+      return [obj]
+    }
+
+    if (obj.allOf) {
+      return flatten(obj.allOf)
+    }
+
     return [obj]
   })
 }
 
 export function merge(objects: JSONSchema7Definition[]): JSONSchema7 {
-  return flatten(objects).reduce<JSONSchema7>(
-    (acc, obj) => (typeof obj === 'boolean' ? acc : mergeObjs(acc, obj)),
-    {},
-  )
+  return flatten(objects).reduce<JSONSchema7>((acc, value) => {
+    return typeof value === 'boolean' ? acc : mergeObjects(acc, value)
+  }, {})
 }

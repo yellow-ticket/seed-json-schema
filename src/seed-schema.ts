@@ -6,23 +6,29 @@ import { seedBoolean } from './seed-boolean.js'
 import { seedArray } from './seed-array.js'
 import { seedObject } from './seed-object.js'
 import { merge } from './utils/merge.js'
+import { isObject } from './utils/is-object.js'
 
 export function seedSchema(schema: JSONSchema7) {
   if (schema.allOf) {
-    return seedSchema(merge(schema.allOf))
+    const { allOf, ...rest } = schema
+    return seedSchema(merge([rest, ...allOf]))
   }
 
   if (schema.oneOf) {
     let first = schema.oneOf.at(0)
-    if (typeof first === 'object') {
-      return seedSchema(first)
+
+    if (isObject(first)) {
+      const { oneOf, ...rest } = schema
+      return seedSchema(merge([rest, first]))
     }
   }
 
   if (schema.anyOf) {
-    let first = schema.anyOf.at(0)
-    if (typeof first === 'object') {
-      return seedSchema(first)
+    const first = schema.anyOf.at(0)
+
+    if (isObject(first)) {
+      const { anyOf, ...rest } = schema
+      return seedSchema(merge([rest, first]))
     }
   }
 
@@ -36,7 +42,7 @@ export function seedSchema(schema: JSONSchema7) {
       })
     }
 
-    if (typeof enumValue === 'object') {
+    if (isObject(enumValue)) {
       return seedSchema({
         type: 'object',
         ...enumValue,
