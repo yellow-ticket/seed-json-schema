@@ -35,7 +35,7 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "^10.5.0",
     "@types/json-schema": "^7.0.15",
     "outvariant": "^1.4.2",
     "randexp": "^0.5.3"

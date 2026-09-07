@@ -111,7 +111,7 @@ export function seedString(schema: JSONSchema7): string {
     }
 
     case 'hexcolor': {
-      return faker.internet.color()
+      return faker.color.rgb()
     }
 
     case 'mac': {

@@ -11,7 +11,7 @@ describe("allOf", () => {
           { type: "object", properties: { age: { type: "integer" } } },
         ],
       },
-      { name: "fully", age: 100 },
+      { name: "yowza", age: 34 },
     ],
     [
       "respects allOf in properties",
@@ -26,7 +26,7 @@ describe("allOf", () => {
           },
         },
       },
-      { user: { name: "fully", age: 100 } },
+      { user: { name: "yowza", age: 34 } },
     ],
     [
       "respects nested allOf schemas",
@@ -41,7 +41,7 @@ describe("allOf", () => {
           },
         ],
       },
-      { name: "fully", age: 100, active: true },
+      { name: "yowza", age: 34, active: true },
     ],
     [
       "merges sibling keywords alongside allOf",
@@ -52,7 +52,7 @@ describe("allOf", () => {
           { type: "object", properties: { age: { type: "integer" } } },
         ],
       },
-      { name: "fully", age: 100 },
+      { name: "yowza", age: 34 },
     ],
   ])("%s", (_, input, output) => {
     expect(seedSchema(input)).toEqual(output);
@@ -69,7 +69,7 @@ describe("oneOf", () => {
           { type: "object", properties: { age: { type: "integer" } } },
         ],
       },
-      { name: "fully" },
+      { name: "yowza" },
     ],
     [
       "respects oneOf in properties",
@@ -84,7 +84,7 @@ describe("oneOf", () => {
           },
         },
       },
-      { user: { name: "fully" } },
+      { user: { name: "yowza" } },
     ],
     [
       "respects nested oneOf schemas",
@@ -102,7 +102,7 @@ describe("oneOf", () => {
           },
         ],
       },
-      { name: "fully" },
+      { name: "yowza" },
     ],
     [
       "merges sibling keywords alongside oneOf",
@@ -114,7 +114,7 @@ describe("oneOf", () => {
           { type: "object", properties: { active: { type: "boolean" } } },
         ],
       },
-      { name: "fully", age: 100 },
+      { name: "yowza", age: 34 },
     ],
   ])("%s", (_, input, output) => {
     expect(seedSchema(input)).toEqual(output);
@@ -131,7 +131,7 @@ describe("anyOf", () => {
           { type: "object", properties: { age: { type: "integer" } } },
         ],
       },
-      { name: "fully" },
+      { name: "yowza" },
     ],
     [
       "respects anyOf in properties",
@@ -146,7 +146,7 @@ describe("anyOf", () => {
           },
         },
       },
-      { user: { name: "fully" } },
+      { user: { name: "yowza" } },
     ],
     [
       "respects nested anyOf schemas",
@@ -164,7 +164,7 @@ describe("anyOf", () => {
           },
         ],
       },
-      { name: "fully" },
+      { name: "yowza" },
     ],
     [
       "merges sibling keywords alongside anyOf",
@@ -176,7 +176,7 @@ describe("anyOf", () => {
           { type: "object", properties: { active: { type: "boolean" } } },
         ],
       },
-      { name: "fully", age: 100 },
+      { name: "yowza", age: 34 },
     ],
   ])("%s", (_, input, output) => {
     expect(seedSchema(input)).toEqual(output);

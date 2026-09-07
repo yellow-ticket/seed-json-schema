@@ -24,12 +24,7 @@ it.each<[string, JSONSchema7, object]>([
         boolean: { type: 'boolean' },
       },
     },
-    {
-      string: 'fully',
-      integer: 14,
-      number: 99.91,
-      boolean: true,
-    },
+    { string: 'yowza', number: 34.55, integer: 40, boolean: false },
   ],
   [
     'respects array property type',
@@ -43,9 +38,7 @@ it.each<[string, JSONSchema7, object]>([
         },
       },
     },
-    {
-      friends: ['fully', 'until'],
-    },
+    { friends: ['yowza', 'zowie'] },
   ],
 
   /* Enums */
@@ -80,7 +73,7 @@ it.each<[string, JSONSchema7, object]>([
       },
       required: ['status'],
     },
-    { status: 'fully' },
+    { status: 'yowza' },
   ],
   [
     'respects a schema with a nested enum as an enum value',

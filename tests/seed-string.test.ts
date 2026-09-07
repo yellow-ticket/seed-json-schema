@@ -2,8 +2,8 @@ import type { JSONSchema7 } from 'json-schema'
 import { seedString } from '../src/seed-string.js'
 
 it.each<[string, JSONSchema7, string | RegExp]>([
-  ['generates a random string by default', { type: 'string' }, 'fully'],
-  ['respects "minLength"', { type: 'string', minLength: 10 }, 'especially'],
+  ['generates a random string by default', { type: 'string' }, 'yowza'],
+  ['respects "minLength"', { type: 'string', minLength: 10 }, 'gadzooks'],
   [
     'respects "minLength" and "maxLength"',
     {
@@ -11,7 +11,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
       minLength: 2,
       maxLength: 4,
     },
-    'less',
+    'pfft',
   ],
   [
     'returns the "const" if defined',
@@ -33,38 +33,38 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "byte" format',
     { type: 'string', format: 'byte' },
-    'R31jdyE=',
+    'R2MhPS4=',
   ],
   [
     'returns a random "byte" with "minLegth" set',
     { type: 'string', format: 'byte', minLength: 15 },
-    'R31jdyEsPX0uNilFMkVB',
+    'R2MhPS4pMkFFU0dgNHIj',
   ],
 
   [
     'returns a random "uuid"',
     { type: 'string', format: 'uuid' },
-    '6fbe024f-2316-4265-aa6e-8d65a837e308',
+    '6b042125-686a-43e0-8a68-23cf5bee102e',
   ],
   [
     'returns a random "firstName"',
     { type: 'string', format: 'firstName' },
-    'Hayley',
+    'Aaliyah',
   ],
   [
     'returns a random "lastName"',
     { type: 'string', format: 'lastName' },
-    'Zieme',
+    'Abbott',
   ],
   [
     'returns a random "email"',
     { type: 'string', format: 'email' },
-    'Zion.Watsica30@yahoo.com',
+    'Eldred.Dibbert@hotmail.com',
   ],
   [
     'returns a random "password"',
     { type: 'string', format: 'password' },
-    'Hey7F2EAFyTqHbR',
+    'He2AFTHb4tHV3mb',
   ],
 
   // Date.
@@ -80,7 +80,7 @@ it.each<[string, JSONSchema7, string | RegExp]>([
       format: 'date',
       minimum: new Date('2026-01-01').getTime(),
     },
-    '2026-06-01',
+    '2026-04-20',
   ],
   [
     'returns a random "date" with "minimum" and "maximum" set',
@@ -123,26 +123,26 @@ it.each<[string, JSONSchema7, string | RegExp]>([
   [
     'returns a random "uri"',
     { type: 'string', format: 'uri' },
-    'https://zany-ramen.org/',
+    'https://self-reliant-cd.com/',
   ],
 
   // Hostname.
   [
     'returns a random "hostname"',
     { type: 'string', format: 'hostname' },
-    'imperfect-yoyo.net',
+    'inferior-punctuation.biz',
   ],
 
   // IPs.
   [
     'returns a random "ipv4"',
     { type: 'string', format: 'ipv4' },
-    '255.184.238.0',
+    '184.103.47.157',
   ],
   [
     'returns a random "ipv6"',
     { type: 'string', format: 'ipv6' },
-    '9ffe:026f:3528:487e:8ebc:96fb:49d5:0bee',
+    '9f06:3247:8b9f:4d0e:9c34:bf6f:dd10:3d29',
   ],
 
   // Misc.
@@ -152,17 +152,17 @@ it.each<[string, JSONSchema7, string | RegExp]>([
       type: 'string',
       format: 'creditCard',
     },
-    '6489-6201-3912-0313-3636',
+    '6503-1013-3546-2805',
   ],
   [
     'returns a random "hexcolor"',
     { type: 'string', format: 'hexcolor' },
-    '#35805c',
+    '#9f0632',
   ],
   [
     'returns a random "mac"',
     { type: 'string', format: 'mac' },
-    '6f:be:02:4f:23:16',
+    '6b:04:21:25:68:6a',
   ],
 ])('%s', (_, input, output) => {
   if (output instanceof RegExp) {

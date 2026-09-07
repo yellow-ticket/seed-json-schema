@@ -23,12 +23,12 @@ it.each<[string, JSONSchema7, unknown[]]>([
   [
     'returns a random array with "minItems" set',
     { type: 'array', minItems: 5, items: { type: 'string' } },
-    ['wetly', 'fooey', 'fully', 'abaft', 'lined', 'waste', 'sword'],
+    ['gloom', 'abaft', 'wedge', 'dimly', 'along', 'gloat', 'daily'],
   ],
   [
     'returns a random array with "maxItems" set',
     { type: 'array', maxItems: 3, items: { type: 'number' } },
-    [99.72, 72.03],
+    [72.03, 0.01],
   ],
   [
     'returns a random array with "minItems" and "maxItems" set',
@@ -38,7 +38,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
       maxItems: 3,
       items: { type: 'number' },
     },
-    [41.7, 99.72, 72.03],
+    [41.7, 72.03, 0.01],
   ],
 
   // Item type.
@@ -50,7 +50,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         type: 'string',
       },
     },
-    ['wetly', 'fooey', 'fully', 'abaft'],
+    ['gloom', 'abaft', 'wedge', 'dimly'],
   ],
   [
     'returns a random array with the "number" item type',
@@ -60,7 +60,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         type: 'number',
       },
     },
-    [99.72, 72.03, 93.26, 0.01],
+    [72.03, 0.01, 30.23, 14.67],
   ],
   [
     'returns a random array with the "integer" item type',
@@ -70,7 +70,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         type: 'integer',
       },
     },
-    [100, 72, 94],
+    [72, 30, 14],
   ],
   [
     'returns a random array with the "boolean" item type',
@@ -80,7 +80,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         type: 'boolean',
       },
     },
-    [true],
+    [true, true, true],
   ],
   [
     'returns a random array with the "object" item type',
@@ -96,10 +96,10 @@ it.each<[string, JSONSchema7, unknown[]]>([
       },
     },
     [
-      { firstName: 'wetly' },
-      { firstName: 'fooey' },
-      { firstName: 'fully' },
+      { firstName: 'gloom' },
       { firstName: 'abaft' },
+      { firstName: 'wedge' },
+      { firstName: 'dimly' },
     ],
   ],
   [
@@ -113,12 +113,7 @@ it.each<[string, JSONSchema7, unknown[]]>([
         },
       },
     },
-    [
-      [72, 94, 12, 30, 100],
-      [23, 9],
-      [18, 39, 34],
-      [40, 94, 54, 85, 42],
-    ],
+    [[30, 14, 9, 18], [40, 54, 42], [20, 88, 2, 67, 42], [14, 20, 80, 97]],
   ],
 ])('%s', (_, input, output) => {
   expect(seedArray(input)).toEqual(output)
