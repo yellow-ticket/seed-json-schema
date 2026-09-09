@@ -24,7 +24,12 @@ it.each<[string, JSONSchema7, object]>([
         boolean: { type: 'boolean' },
       },
     },
-    { string: 'yowza', number: 34.55, integer: 40, boolean: false },
+    {
+      string: 'yowza',
+      integer: 40,
+      number: 34.55,
+      boolean: false,
+    },
   ],
   [
     'respects array property type',
@@ -38,7 +43,9 @@ it.each<[string, JSONSchema7, object]>([
         },
       },
     },
-    { friends: ['yowza', 'zowie'] },
+    {
+      friends: ['yowza', 'zowie'],
+    },
   ],
 
   /* Enums */
