@@ -44,6 +44,14 @@ it.each<[string, JSONSchema7, number | RegExp]>([
     },
     12.345,
   ],
+  [
+    'returns one number from "examples" array',
+    {
+      type: 'number',
+      examples: [12.345],
+    },
+    12.345,
+  ],
 ])('%s', (_, input, output) => {
   if (output instanceof RegExp) {
     expect(seedNumber(input)).toMatch(output)

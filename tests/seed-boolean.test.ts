@@ -13,6 +13,11 @@ it.each<[string, JSONSchema7, boolean]>([
     { type: 'boolean', examples: true },
     true,
   ],
+  [
+    'returns one boolean from "examples" array',
+    { type: 'boolean', examples: [true] },
+    true,
+  ],
 ])('%s', (_, input, output) => {
   expect(seedBoolean(input)).toBe(output)
 })

@@ -14,6 +14,11 @@ it.each<[string, JSONSchema7, object]>([
     { foo: 'bar' },
   ],
   [
+    'returns one object from "examples" array',
+    { type: 'object', examples: [{ foo: 'bar' }] },
+    { foo: 'bar' },
+  ],
+  [
     'respects literal property types',
     {
       type: 'object',

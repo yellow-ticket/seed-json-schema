@@ -10,7 +10,11 @@ export function seedNumber(schema: JSONSchema7): number {
   }
 
   if (schema.examples) {
-    return schema.examples as number
+    return (
+      Array.isArray(schema.examples)
+        ? faker.helpers.arrayElement(schema.examples)
+        : schema.examples
+    ) as number
   }
 
   const minimum =
