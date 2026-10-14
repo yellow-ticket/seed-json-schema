@@ -10,9 +10,11 @@ export function seedObject(schema: JSONSchema7) {
     return schema.default
   }
 
-  // Always us an explicit example, if provided.
+  // Always use an explicit example, if provided.
   if (schema.examples) {
-    return schema.examples
+    return Array.isArray(schema.examples)
+      ? faker.helpers.arrayElement(schema.examples)
+      : schema.examples
   }
 
   const json: Record<string, unknown> = {}

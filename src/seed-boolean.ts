@@ -7,7 +7,11 @@ export function seedBoolean(schema: JSONSchema7): boolean {
   }
 
   if (schema.examples) {
-    return schema.examples as boolean
+    return (
+      Array.isArray(schema.examples)
+        ? faker.helpers.arrayElement(schema.examples)
+        : schema.examples
+    ) as boolean
   }
 
   return faker.datatype.boolean()

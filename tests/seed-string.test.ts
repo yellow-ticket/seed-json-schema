@@ -24,6 +24,11 @@ it.each<[string, JSONSchema7, string | RegExp]>([
     'world',
   ],
   [
+    'returns one entry from "examples" array',
+    { type: 'string', examples: ['Summer campaign'] },
+    'Summer campaign',
+  ],
+  [
     'returns a random string matching a pattern',
     { type: 'string', pattern: '^[a-z]{3}-[0-9]{3}$' },
     /^[a-z]{3}-[0-9]{3}$/,

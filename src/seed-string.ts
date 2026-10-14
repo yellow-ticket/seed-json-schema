@@ -10,7 +10,11 @@ export function seedString(schema: JSONSchema7): string {
   }
 
   if (schema.examples) {
-    return schema.examples as string
+    return (
+      Array.isArray(schema.examples)
+        ? faker.helpers.arrayElement(schema.examples)
+        : schema.examples
+    ) as string
   }
 
   // Use a random value from the specified enums list.
